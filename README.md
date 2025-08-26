@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Create a Mini App
 
 [Mini apps](https://docs.worldcoin.org/mini-apps) enable third-party developers to create native-like applications within World App.
@@ -31,3 +32,6 @@ This starter kit uses [Mini Apps UI Kit](https://github.com/worldcoin/mini-apps-
 ## Contributing
 
 This template was made with help from the amazing [supercorp-ai](https://github.com/supercorp-ai) team.
+=======
+# kronostoken
+>>>>>>> 0c94775ece2042efe705270b024686f3fa690db7
