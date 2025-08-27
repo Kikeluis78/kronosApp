@@ -2,14 +2,16 @@
 import { walletAuth } from '@/auth/wallet';
 import { Button, LiveFeedback } from '@worldcoin/mini-apps-ui-kit-react';
 import { useMiniKit } from '@worldcoin/minikit-js/minikit-provider';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, ButtonHTMLAttributes } from 'react';
 
-/**
- * Componente AuthButton
- * - Maneja autenticación con Wallet de Wordcoin
- * - Usa LiveFeedback para mostrar estado de login
- */
-export const AuthButton = () => {
+// -------------------------------
+// Props extendidas para AuthButton
+// -------------------------------
+interface AuthButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string; // opcional, para Tailwind
+}
+
+export const AuthButton = ({ className, ...props }: AuthButtonProps) => {
   const [isPending, setIsPending] = useState(false);
   const { isInstalled } = useMiniKit();
 
@@ -56,6 +58,8 @@ export const AuthButton = () => {
         disabled={isPending}
         size="lg"
         variant="primary"
+        className={className} // <-- ahora acepta Tailwind
+        {...props}           // <-- permite pasar otras props a Button
       >
         Login with Wallet
       </Button>
