@@ -2,19 +2,18 @@
 import { useState, useEffect } from 'react';
 
 export default function Contador() {
-  const [valor, setValor] = useState(0);
+  const [count, setCount] = useState(0);
 
-  // Solo ejemplo: contador que sube lento hasta un número fijo
   useEffect(() => {
-    const interval = setInterval(() => {
-      setValor(prev => (prev < 0.1234567 ? prev + 0.000001 : prev));
-    }, 50);
-    return () => clearInterval(interval);
+    const timer = setInterval(() => {
+      setCount((prev) => prev + 0.0000001);
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="text-center text-2xl font-mono my-4 neon-glow">
-      {valor.toFixed(7)}
+    <div className="text-2xl font-mono text-indigo-400 mt-4">
+      {count.toFixed(7)}
     </div>
   );
 }
