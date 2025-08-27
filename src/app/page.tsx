@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Page } from '@/components/PageLayout';
 import { AuthButton } from '@/components/AuthButton';
-import { Spinner, LogoPrincipal, Contador } from '@/components/utilidades/indexUtilidades';
+import { Spinner, LogoPrincipal, Contador } from '@/components/utilidades/IndexUtilidades';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
