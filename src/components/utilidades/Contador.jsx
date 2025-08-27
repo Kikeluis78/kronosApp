@@ -1,4 +1,6 @@
 // src/components/utilidades/Contador.jsx
+'use client';
+
 import { useState, useEffect } from 'react';
 
 export default function Contador() {
@@ -8,6 +10,7 @@ export default function Contador() {
     const timer = setInterval(() => {
       setCount((prev) => prev + 0.0000001);
     }, 1000);
+
     return () => clearInterval(timer);
   }, []);
 

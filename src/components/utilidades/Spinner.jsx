@@ -1,8 +1,13 @@
-// src/components/utilidades/Spinner.jsx
-export default function Spinner() {
+// Este es un Client Component
+'use client';
+import { useState } from 'react';
+
+export default function Contador() {
+  const [count, setCount] = useState(0);
+
   return (
-    <div className="flex justify-center items-center my-4">
-      <div className="w-12 h-12 border-4 border-t-indigo-500 border-r-transparent border-b-indigo-500 border-l-transparent rounded-full animate-spin"></div>
-    </div>
+    <button onClick={() => setCount(count + 1)}>
+      Contador: {count}
+    </button>
   );
 }
