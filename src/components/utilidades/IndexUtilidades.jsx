@@ -1,4 +1,3 @@
-// src/components/utilidades/indexUtilidades.jsx
 
 // Importa tus componentes individuales
 import Spinner from './Spinner';

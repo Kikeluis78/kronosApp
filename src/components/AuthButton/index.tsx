@@ -1,56 +1,37 @@
+// src/components/AuthButton.tsx
 'use client';
 import { walletAuth } from '@/auth/wallet';
 import { Button, LiveFeedback } from '@worldcoin/mini-apps-ui-kit-react';
 import { useMiniKit } from '@worldcoin/minikit-js/minikit-provider';
 import { useCallback, useEffect, useState, ButtonHTMLAttributes } from 'react';
+import React from 'react';
 
-// -------------------------------
-// Props extendidas para AuthButton
-// -------------------------------
 interface AuthButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string; // opcional, para Tailwind
+  className?: string;
 }
 
-export const AuthButton = ({ className, ...props }: AuthButtonProps) => {
+export const AuthButton: React.FC<AuthButtonProps> = ({ className, ...props }) => {
   const [isPending, setIsPending] = useState(false);
   const { isInstalled } = useMiniKit();
 
   const onClick = useCallback(async () => {
     if (!isInstalled || isPending) return;
-
     setIsPending(true);
-    try {
-      await walletAuth();
-    } catch (error) {
-      console.error('Error al autenticar Wallet', error);
-    } finally {
-      setIsPending(false);
-    }
+    try { await walletAuth(); } 
+    catch (error) { console.error(error); } 
+    finally { setIsPending(false); }
   }, [isInstalled, isPending]);
 
   useEffect(() => {
-    const authenticate = async () => {
-      if (isInstalled && !isPending) {
-        setIsPending(true);
-        try {
-          await walletAuth();
-        } catch (error) {
-          console.error('Error automático al autenticar Wallet', error);
-        } finally {
-          setIsPending(false);
-        }
-      }
-    };
-    authenticate();
+    if (isInstalled && !isPending) {
+      setIsPending(true);
+      walletAuth().finally(() => setIsPending(false));
+    }
   }, [isInstalled, isPending]);
 
   return (
     <LiveFeedback
-      label={{
-        failed: 'Failed to login',
-        pending: 'Logging in',
-        success: 'Logged in',
-      }}
+      label={{ failed: 'Failed to login', pending: 'Logging in', success: 'Logged in' }}
       state={isPending ? 'pending' : undefined}
     >
       <Button
@@ -58,8 +39,8 @@ export const AuthButton = ({ className, ...props }: AuthButtonProps) => {
         disabled={isPending}
         size="lg"
         variant="primary"
-        className={className} // <-- ahora acepta Tailwind
-        {...props}           // <-- permite pasar otras props a Button
+        className={className}
+        {...props}
       >
         Login with Wallet
       </Button>

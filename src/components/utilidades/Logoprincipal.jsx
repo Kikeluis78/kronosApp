@@ -7,5 +7,8 @@ export default function LogoPrincipal() {
       {/* Aquí va el logo principal */}
       <p className="text-lg font-bold">Aquí va el logo principal</p>
     </div>
+
+      
+      
   );
 }
